@@ -1,0 +1,75 @@
+services:
+  tasks-db:
+    image: postgres
+    user: postgres
+    secrets:
+      - tasks-db-password
+    env_file:
+      - ./tasks-db/.env
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - shrp
+
+  tasks-service:
+    build: ./tasks-service
+    env_file:
+      - ./tasks-service/.env
+    depends_on:
+      tasks-db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ./tasks-service
+          target: /app
+    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
+    # ports:
+    #   - 7080:8080
+    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
+    expose:
+      - 8080
+    networks:
+      - shrp
+
+  gateway-service:
+    build: ./gateway-service
+    env_file:
+      - ./gateway-service/.env
+    develop:
+      watch:
+        - action: rebuild
+          path: ./gateway-service
+          target: /app
+    ports:
+      - 8888:8080
+    networks:
+      - shrp
+
+  adminer:
+    image: adminer
+    environment:
+      - ADMINER_DEFAULT_SERVER=tasks-db
+    ports:
+      - 8080:8080
+    networks:
+      - shrp
+
+# volumes:
+#   tasks-db-data:
+#   auth-db-data:
+
+secrets:
+  tasks-db-password:
+    file: ./secrets/tasks-db-password.txt
+  auth-db-password:
+    file: ./secrets/auth-db-password.txt
+
+networks:
+  shrp:
+    driver: bridge

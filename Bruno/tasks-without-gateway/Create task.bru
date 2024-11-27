@@ -1,0 +1,18 @@
+meta {
+  name: Create task
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:7080/tasks
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "user_id":"f928c455-d2f3-4e30-bf58-178ae041e8c2",
+    "content":"Test"
+  }
+}

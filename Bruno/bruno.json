@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "MS Java PoC",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
