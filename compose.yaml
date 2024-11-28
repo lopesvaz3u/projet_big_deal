@@ -66,9 +66,9 @@ services:
 
 secrets:
   tasks-db-password:
-    file: ./secrets/tasks-db-password.txt
+    file: secrets/tasks-db-password
   auth-db-password:
-    file: ./secrets/auth-db-password.txt
+    file: secrets/auth-db-password
 
 networks:
   shrp:
