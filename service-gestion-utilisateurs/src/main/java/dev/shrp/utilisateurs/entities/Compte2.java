@@ -3,7 +3,7 @@ package dev.shrp.utilisateurs.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "comptes")
+@Table(name = "comptes2")
 public class Compte {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
