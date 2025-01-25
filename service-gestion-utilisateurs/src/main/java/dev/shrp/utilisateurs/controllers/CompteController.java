@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/compte")
 public class CompteController {
+
+    Logger logger = Logger.getLogger(CompteController.class.getName());
 
     @Autowired
     private CompteService compteService;
@@ -27,8 +30,6 @@ public class CompteController {
 
     @PostMapping
     public Compte createCompte(@RequestBody Compte compte) {
-        System.out.println("Reçu : " + compte);
-        Compte compte1 = new Compte();
-        return compteService.createCompte(compte1);
+        return compteService.createCompte(compte);
     }
 }

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.shrp</groupId>
 	<artifactId>gestion-utilisateurs</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3</version>
 	<name>tasks</name>
 	<description>Service Gestion Utilisateurs</description>
 	<url/>
