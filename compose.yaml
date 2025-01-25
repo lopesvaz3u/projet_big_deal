@@ -37,6 +37,28 @@ services:
     networks:
       - shrp
 
+
+  service-gestion-utilisateurs:
+    build: ./service-gestion-utilisateurs
+    env_file:
+      - ./service-gestion-utilisateurs/.env
+    depends_on:
+      tasks-db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ./service-gestion-utilisateurs
+          target: /app
+    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
+    # ports:
+    #   - 7080:8080
+    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
+    expose:
+      - 8080
+    networks:
+      - shrp
+
   gateway-service:
     build: ./gateway-service
     env_file:
