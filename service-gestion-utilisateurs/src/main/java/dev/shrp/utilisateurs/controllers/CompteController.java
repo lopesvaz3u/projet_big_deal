@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 @RequestMapping("/compte")
 public class CompteController {
 
-    Logger logger = Logger.getLogger(CompteController.class.getName());
-
     @Autowired
     private CompteService compteService;
 

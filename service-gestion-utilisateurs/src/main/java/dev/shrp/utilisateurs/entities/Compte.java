@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Compte {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id_compte;
 
     @Column(nullable = true, unique = true)
     private String identifiant;
@@ -30,12 +30,13 @@ public class Compte {
     @Column(nullable = true)
     private String adresse;
 
+
     public Long getId() {
-        return id;
+        return id_compte;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_compte = id;
     }
 
     public String getIdentifiant() {
