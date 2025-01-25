@@ -1,6 +1,6 @@
 services:
   tasks-db:
-    image: postgres
+    image: postgres:15
     user: postgres
     secrets:
       - tasks-db-password
@@ -37,6 +37,28 @@ services:
     networks:
       - shrp
 
+
+  service-api:
+    build: ./service-api
+    env_file:
+      - ./service-api/.env
+    depends_on:
+      tasks-db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ./service-api
+          target: /app
+    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
+    # ports:
+    #   - 7080:8080
+    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
+    expose:
+      - 8080
+    networks:
+      - shrp
+
   gateway-service:
     build: ./gateway-service
     env_file:
@@ -60,8 +82,8 @@ services:
     networks:
       - shrp
 
-#volumes:
-  #tasks-db-data:
+# volumes:
+#   tasks-db-data:
 #   auth-db-data:
 
 secrets:

@@ -52,7 +52,7 @@ CREATE TABLE Match (
     id_equipe_2 INTEGER NOT NULL,
     score_equipe_1 INTEGER NOT NULL DEFAULT 0,
     score_equipe_2 INTEGER NOT NULL DEFAULT 0,
-    id_competition INTEGER NOT NULL,
+    id_competition INTEGER ,
     FOREIGN KEY (id_equipe_1) REFERENCES Equipe(id_equipe),
     FOREIGN KEY (id_equipe_2) REFERENCES Equipe(id_equipe),
     FOREIGN KEY (id_competition) REFERENCES Competition(id_competition)
