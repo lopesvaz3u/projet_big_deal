@@ -59,6 +59,27 @@ services:
     networks:
       - shrp
 
+  service-pari:
+    build: ./service-pari
+    env_file:
+      - ./service-pari/.env
+    depends_on:
+      tasks-db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ./service-pari
+          target: /app
+    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
+    ports:
+       - 6080:8080
+    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
+    #expose:
+      #- 8080
+    networks:
+      - shrp
+
   gateway-service:
     build: ./gateway-service
     env_file:
