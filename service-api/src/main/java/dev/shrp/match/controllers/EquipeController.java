@@ -3,6 +3,7 @@ package dev.shrp.match.controllers;
 import dev.shrp.match.entities.Equipe;
 import dev.shrp.match.services.EquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,11 @@ public class EquipeController {
     @PostMapping
     public Equipe createEquipe(@RequestBody Equipe equipe) {
         return equipeService.createEquipe(equipe);
+    }
+
+    @GetMapping("/sync")
+    public ResponseEntity<String> syncEquipes() {
+        equipeService.fetchAndSaveTeams();
+        return ResponseEntity.ok("Synchronisation des équipes terminée !");
     }
 }

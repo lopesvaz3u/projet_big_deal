@@ -15,4 +15,24 @@ public class Equipe {
 
     @Column(name = "pays", nullable = false)
     private String pays;
+
+    public void setId_equipe(Long id_equipe) {
+        this.id_equipe = id_equipe;
+    }
+    
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
+    public Long getId_equipe() {
+        return id_equipe;
+    }    
+    
+    public String getNom() {
+        return nom;
+    }
 }

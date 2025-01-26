@@ -47,6 +47,84 @@ public class GatewayApplication {
     }
     // end::route-locator[]
 
+
+    // Route pour la mise à jour du score des matchs
+    @Bean
+    public RouteLocator updateScoreMatchRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService(); // L'URL du service de match
+        return builder.routes()
+                .route(p -> p
+                        .path("/match/{id}/score") // La route d'API pour mettre à jour le score
+                        .uri(matchServiceUri)) // Redirige la requête vers le service des matchs
+                .build();
+    }
+
+    // Route pour obtenir tous les matchs
+    @Bean
+    public RouteLocator getAllMatchesRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService(); // L'URL du service de match
+        return builder.routes()
+                .route(p -> p
+                        .path("/match")
+                        .uri(matchServiceUri)) // Redirige la requête vers le service des matchs
+                .build();
+    }
+
+    // Route pour obtenir un match spécifique par ID
+    @Bean
+    public RouteLocator getMatchByIdRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService();
+        return builder.routes()
+                .route(p -> p
+                        .path("/match/{id}")
+                        .uri(matchServiceUri))
+                .build();
+    }
+
+    // Route pour créer un nouveau match
+    @Bean
+    public RouteLocator createMatchRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService();
+        return builder.routes()
+                .route(p -> p
+                        .path("/match")
+                        .uri(matchServiceUri))
+                .build();
+    }
+
+    // Route pour mettre à jour la cote d'un match
+    @Bean
+    public RouteLocator updateCoteRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService();
+        return builder.routes()
+                .route(p -> p
+                        .path("/match/{id}/cote")
+                        .uri(matchServiceUri))
+                .build();
+    }
+
+    // Route pour mettre à jour la date de départ réelle d'un match
+    @Bean
+    public RouteLocator updateDepartReelRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService();
+        return builder.routes()
+                .route(p -> p
+                        .path("/match/{id}/depart-reel")
+                        .uri(matchServiceUri))
+                .build();
+    }
+
+    // Route pour mettre à jour l'état d'un match
+    @Bean
+    public RouteLocator updateEtatRoute(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String matchServiceUri = uriConfiguration.getMatchService();
+        return builder.routes()
+                .route(p -> p
+                        .path("/match/{id}/etat")
+                        .uri(matchServiceUri))
+                .build();
+    }
+
     // tag::fallback[]
     @RequestMapping("/fallback")
     public Mono<String> fallback() {
@@ -69,6 +147,29 @@ class UriConfiguration {
     public void setHttpbin(String httpbin) {
         this.httpbin = httpbin;
     }
+
+    private String matchService = "http://match-service:7081"; // URL du service des matchs
+
+    public String getMatchService() {
+        return matchService;
+    }
+
+    public void setMatchService(String matchService) {
+        this.matchService = matchService;
+    }
+
+    /*
+    private String equipeService = "http://equipe-service:7081"; // URL du service des matchs
+
+    public String getEquipeService() {
+        return equipeService;
+    }
+
+    public void setEquipeServiceService(String equipeService) {
+        this.equipeService = equipeService;
+    }
+
+     */
 }
 // end::uri-configuration[]
 // end::code[]

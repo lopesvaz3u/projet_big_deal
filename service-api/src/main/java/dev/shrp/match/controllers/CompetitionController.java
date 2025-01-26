@@ -3,6 +3,7 @@ package dev.shrp.match.controllers;
 import dev.shrp.match.entities.Competition;
 import dev.shrp.match.services.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,12 @@ public class CompetitionController {
     @PostMapping
     public Competition createCompetition(@RequestBody Competition competition) {
         return competitionService.createCompetition(competition);
+    }
+
+    @GetMapping("/sync")
+    public ResponseEntity<String> syncCompetitions() {
+        System.out.println("on va rentrer");
+        competitionService.fetchAndSaveCompetitions();
+        return ResponseEntity.ok("Synchronisation des compétitions terminée !");
     }
 }
