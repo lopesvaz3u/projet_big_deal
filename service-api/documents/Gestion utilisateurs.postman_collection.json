@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "61224b24-5856-4be4-8e83-b14374d790e3",
+		"name": "Gestion utilisateurs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18285382"
+	},
+	"item": [
+		{
+			"name": "Bookmaker",
+			"item": [
+				{
+					"name": "getAllBookmakers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/bookmaker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"bookmaker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOneBookmaker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/bookmaker/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"bookmaker",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addNewBookmaker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"identifiant\": \"user123\",\r\n  \"motDePasse\": \"password123\",\r\n  \"nom\": \"Dupont\",\r\n  \"prenom\": \"Jean\",\r\n  \"email\": \"jean.dupont@example.com\",\r\n  \"telephone\": \"0123456789\",\r\n  \"adresse\": \"123 Rue de Paris\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7080/bookmaker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"bookmaker"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parieur",
+			"item": [
+				{
+					"name": "addNewParieur",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"identifiant\": \"user123\",\r\n  \"motDePasse\": \"password123\",\r\n  \"nom\": \"Dupont\",\r\n  \"prenom\": \"Jean\",\r\n  \"email\": \"jean.dupont@example.com\",\r\n  \"telephone\": \"0123456789\",\r\n  \"adresse\": \"123 Rue de Paris\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7080/parieur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"parieur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllParieurs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/parieur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"parieur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOneParieur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/bookmaker/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"bookmaker",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateParieurById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\": \"Dupont444\",\r\n  \"prenom\": \"Jean4484\",\r\n  \"email\": \"jeanssssss.EXEMPLE\",\r\n  \"telephone\": \"0777777777\",\r\n  \"adresse\": \"123 Rue de Paris 999\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7080/compte/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"compte",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Compte",
+			"item": [
+				{
+					"name": "getAllComptes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/compte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"compte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOneCompte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/comptes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"comptes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addNewCompte",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"identifiant\": \"user123q\",\r\n  \"motDePasse\": \"password123\",\r\n  \"nom\": \"Dupont\",\r\n  \"prenom\": \"Jean\",\r\n  \"email\": \"jeanssssss.dupont@example.com\",\r\n  \"telephone\": \"0123456789\",\r\n  \"adresse\": \"123 Rue de Paris\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7080/compte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"compte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCompteById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\": \"Dupont444\",\r\n  \"prenom\": \"Jean4484\",\r\n  \"email\": \"jeanssssss.EXEMPLE\",\r\n  \"telephone\": \"0777777777\",\r\n  \"adresse\": \"123 Rue de Paris 999\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7080/compte/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"compte",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
