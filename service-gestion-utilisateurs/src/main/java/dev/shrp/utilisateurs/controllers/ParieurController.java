@@ -30,4 +30,9 @@ public class ParieurController {
     public Parieur createParieur(@RequestBody Compte compte, @RequestParam String rib) {
         return parieurService.createParieur(compte, rib);
     }
+
+    @PutMapping("/{id}")
+    public Parieur updateRibParieur(@PathVariable("id") Long id, @RequestParam String rib) {
+        return parieurService.updateRib(id, rib);
+    }
 }

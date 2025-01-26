@@ -30,4 +30,9 @@ public class CompteController {
     public Compte createCompte(@RequestBody Compte compte) {
         return compteService.createCompte(compte);
     }
+
+    @PutMapping("/{id}")
+    public Compte updateCompte(@PathVariable("id") Long id, @RequestBody Compte compte) {
+        return compteService.updateCompte(id, compte);
+    }
 }

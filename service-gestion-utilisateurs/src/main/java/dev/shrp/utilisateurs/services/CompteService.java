@@ -25,4 +25,14 @@ public class CompteService {
     public Compte createCompte(Compte compte) {
         return compteRepository.save(compte);
     }
+
+    public Compte updateCompte(Long id, Compte compte) {
+        Compte compteToUpdate = compteRepository.findById(id).orElseThrow();
+        compteToUpdate.setNom(compte.getNom());
+        compteToUpdate.setPrenom(compte.getPrenom());
+        compteToUpdate.setEmail(compte.getEmail());
+        compteToUpdate.setAdresse(compte.getAdresse());
+        compteToUpdate.setTelephone(compte.getTelephone());
+        return compteRepository.save(compteToUpdate);
+    }
 }

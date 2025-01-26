@@ -51,4 +51,11 @@ public class ParieurService {
             throw new IllegalArgumentException("Le compte existe déjà.");
         }
     }
+
+    public Parieur updateRib(Long id, String rib) {
+        Parieur parieurToUpdate = parieurRepository.findById(id).orElseThrow();
+        parieurToUpdate.setRib(rib);
+        return parieurRepository.save(parieurToUpdate);
+    }
+
 }
