@@ -26,11 +26,6 @@ public class EquipeController {
         return equipeService.getOneEquipeById(id);
     }
 
-    @PostMapping
-    public Equipe createEquipe(@RequestBody Equipe equipe) {
-        return equipeService.createEquipe(equipe);
-    }
-
     @GetMapping("/sync")
     public ResponseEntity<String> syncEquipes() {
         equipeService.fetchAndSaveTeams();

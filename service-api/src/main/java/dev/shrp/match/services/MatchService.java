@@ -44,26 +44,6 @@ public class MatchService {
         return matchRepository.findById(id);
     }
 
-    public Match createMatch(Match match) {
-        return matchRepository.save(match);
-    }
-
-
-    public Match updateCote(Long id, Float newCote) {
-        Match match = matchRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Match non trouvé avec l'ID : " + id));
-        match.setCote(newCote);
-        return matchRepository.save(match);
-    }
-
-    public Match updateScore(Long id, Integer scoreEquipe1, Integer scoreEquipe2) {
-        Match match = matchRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Match non trouvé avec l'ID : " + id));
-        match.setScore_equipe_1(scoreEquipe1);
-        match.setScore_equipe_2(scoreEquipe2);
-        return matchRepository.save(match);
-    }
-
     public Match updateDepartReel(Long id, Date departReel) {
         Match match = matchRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Match non trouvé avec l'ID : " + id));
@@ -71,15 +51,6 @@ public class MatchService {
         return matchRepository.save(match);
     }
 
-    public Match updateEtat(Long id, Match.EEtatMatch nouvelEtat) {
-        Match match = matchRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Match non trouvé avec l'ID : " + id));
-        match.setEtat(nouvelEtat);
-        return matchRepository.save(match);
-    }
-
-    // --- Synchronisation avec l'API ---
-    @Transactional
     public void fetchAndSaveMatches() {
         try {
             // Étape 1 : Envoyer une requête à l'API
@@ -92,18 +63,14 @@ public class MatchService {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                // Étape 2 : Parser les données JSON
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode rootNode = mapper.readTree(response.body());
                 JsonNode matches = rootNode.get("matches");
 
                 for (JsonNode matchNode : matches) {
-                    // Étape 3 : Mapper les données JSON vers l'entité Match
                     Match match = mapJsonToMatch(matchNode);
 
-                    // Vérifier si le match existe déjà dans la base de données
                     if (!matchRepository.existsById(match.getId_match())) {
-                        // Étape 4 : Sauvegarder le match dans la base de données
                         matchRepository.save(match);
                         System.out.println("Match sauvegardé : " + match.getId_match());
                     } else {
@@ -115,6 +82,7 @@ public class MatchService {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la récupération des matchs");
         }
     }
 
@@ -127,17 +95,17 @@ public class MatchService {
             Long equipe1Id = matchNode.get("homeTeam").get("id").asLong();
             Equipe equipe1 = equipeRepository.findById(equipe1Id)
                     .orElseThrow(() -> new IllegalArgumentException("Équipe introuvable pour l'ID : " + equipe1Id));
-            match.setId_equipe_1(equipe1);
+            match.setEquipe_1(equipe1.getId_equipe());
             EquipeService.enregistrerEquipe(matchNode.get("awayTeam"), equipeRepository);
             Long equipe2Id = matchNode.get("awayTeam").get("id").asLong();
             Equipe equipe2 = equipeRepository.findById(equipe2Id)
                     .orElseThrow(() -> new IllegalArgumentException("Équipe introuvable pour l'ID : " + equipe2Id));
-            match.setId_equipe_2(equipe2);
+            match.setEquipe_2(equipe2.getId_equipe());
 
             // Récupérer les scores
             JsonNode score = matchNode.get("score");
-            match.setScore_equipe_1(score.get("fullTime").get("homeTeam").asInt(0));
-            match.setScore_equipe_2(score.get("fullTime").get("awayTeam").asInt(0));
+            //match.setScore_equipe_1(score.get("fullTime").get("homeTeam").asInt(0));
+            //match.setScore_equipe_2(score.get("fullTime").get("awayTeam").asInt(0));
 
             // Convertir les dates
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -149,6 +117,7 @@ public class MatchService {
             match.setEtat(mapStatusToEEtatMatch(status));
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la conversion du JSON en match");
         }
         return match;
     }
@@ -163,5 +132,4 @@ public class MatchService {
             default -> Match.EEtatMatch.Prévu;
         };
     }
-
 }

@@ -38,11 +38,8 @@ public class EquipeService {
         return equipeRepository.save(equipe);
     }
 
-    // --- Synchronisation avec l'API ---
-    @Transactional
     public void fetchAndSaveTeams() {
         try {
-            // Étape 1 : Envoyer une requête à l'API
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(API_URL))
@@ -52,7 +49,6 @@ public class EquipeService {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
     
             if (response.statusCode() == 200) {
-                // Étape 2 : Parser les données JSON
                 ObjectMapper mapper = new ObjectMapper();
                 
                 JsonNode rootNode = mapper.readTree(response.body());
@@ -60,8 +56,7 @@ public class EquipeService {
                 JsonNode teams = rootNode.get("teams");
 
                 for (JsonNode teamNode : teams) {
-                    // Étape 3 : Mapper les données JSON vers l'entité Equipe
-                    enregistrerEquipe(teamNode, equipeRepository);
+                    equipeRepository.save(mapJsonToEquipe(teamNode));
                 }
             } else {
                 System.err.println("Erreur : Code HTTP " + response.statusCode());
@@ -73,7 +68,6 @@ public class EquipeService {
 
     public static void enregistrerEquipe (JsonNode teamNode, EquipeRepository er){
         Equipe equipe = mapJsonToEquipe(teamNode);
-    
         // Vérifier si l'équipe existe déjà dans la base de données
         if (!er.existsById(equipe.getId_equipe())) {
             er.save(equipe);
@@ -83,8 +77,9 @@ public class EquipeService {
         }
     }
 
+
     // Mapper les données JSON vers l'entité Equipe
-    private static Equipe mapJsonToEquipe(JsonNode teamNode) {
+    public static Equipe mapJsonToEquipe(JsonNode teamNode) {
         Equipe equipe = new Equipe();
         try {
             equipe.setId_equipe(teamNode.get("id").asLong()); // ID de l'équipe

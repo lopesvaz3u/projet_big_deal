@@ -7,14 +7,13 @@ import java.util.Date;
 @Table(name = "match")
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_match")
     private Long id_match;
 
-    @Column(name = "cote", nullable = false)
+    @Column(name = "cote")
     private Float cote;
 
-    @Column(name = "depart_prevu", nullable = false)
+    @Column(name = "depart_prevu")
     @Temporal(TemporalType.DATE)
     private Date depart_prevu;
 
@@ -23,29 +22,23 @@ public class Match {
     private Date depart_reel;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "etat", nullable = false)
+    @Column(name = "etat")
     private EEtatMatch etat;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_equipe_1", nullable = false)
-    //@Column(name = "id_equipe_1", nullable = false)
-    private Equipe equipe_1;
+    @Column(name = "id_equipe_1")
+    private Long equipe_1;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_equipe_2", nullable = false)
-    //@Column(name = "id_equipe_2", nullable = false)
-    private Equipe equipe_2;
+    @Column(name = "id_equipe_2")
+    private Long equipe_2;
 
-    @Column(name = "score_equipe_1", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    @Column(name = "score_equipe_1",  columnDefinition = "INTEGER DEFAULT 0")
     private Integer score_equipe_1;
 
-    @Column(name = "score_equipe_2", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    @Column(name = "score_equipe_2", columnDefinition = "INTEGER DEFAULT 0")
     private Integer score_equipe_2;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_competition")
-    //@Column(name = "competition", nullable = false)
-    private Competition competition;
+    @Column(name = "id_competition")
+    private Long competition;
 
     public enum EEtatMatch {
         Prévu,
@@ -53,8 +46,6 @@ public class Match {
         Terminé,
         Annulé
     }
-
-
 
     public Float getCote() {
         return cote;
@@ -112,13 +103,19 @@ public class Match {
         this.id_match = id_match;
     }
 
-    public void setId_equipe_1(Equipe equipe_1) {
+    public Long getEquipe_1() {
+        return equipe_1;
+    }
+
+    public void setEquipe_1(Long equipe_1) {
         this.equipe_1 = equipe_1;
     }
 
-    public void setId_equipe_2(Equipe equipe_2) {
-        this.equipe_2 = equipe_2;
+    public Long getEquipe_2() {
+        return equipe_2;
     }
 
-
+    public void setEquipe_2(Long equipe_2) {
+        this.equipe_2 = equipe_2;
+    }
 }

@@ -21,20 +21,15 @@ public class CompetitionController {
         return competitionService.getAllCompetitions();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Competition> getOneUser(@PathVariable("id") Long id) {
-        return competitionService.getOneCompetitionById(id);
-    }
-
-    @PostMapping
-    public Competition createCompetition(@RequestBody Competition competition) {
-        return competitionService.createCompetition(competition);
-    }
-
     @GetMapping("/sync")
     public ResponseEntity<String> syncCompetitions() {
-        System.out.println("on va rentrer");
-        competitionService.fetchAndSaveCompetitions();
-        return ResponseEntity.ok("Synchronisation des compétitions terminée !");
+        List<Competition> competitions = competitionService.fetchDataCompetition();
+        competitionService.saveAllCompetitions(competitions);
+        return ResponseEntity.ok("Sauvegarde des compétitions terminée !");
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Competition> getOneCompetition(@PathVariable("id") Long id) {
+        return competitionService.getOneCompetitionById(id);
     }
 }
