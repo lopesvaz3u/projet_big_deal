@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.shrp</groupId>
-	<artifactId>gestion-recommendation</artifactId>
+	<artifactId>gestion-recommandation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>recommendation</name>
 	<description>Service Gestion recommendation</description>

@@ -20,6 +20,7 @@ import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
 import org.apache.mahout.common.RandomUtils;
 
 public class ItemBasedRecommender {
+    /*
     public static void main(String[] args) throws Exception {
         RandomUtils.useTestSeed(); // to randomize the evaluation result
         DataModel model = new FileDataModel(new File("dataset-recsys.csv"));
@@ -53,4 +54,6 @@ public class ItemBasedRecommender {
         System.out.println("Recall: " + stats.getRecall());
         System.out.println("F1 Score: " + stats.getF1Measure());
     }
+
+     */
 }
