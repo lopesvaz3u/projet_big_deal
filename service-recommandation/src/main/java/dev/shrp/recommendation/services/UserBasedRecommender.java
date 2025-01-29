@@ -8,6 +8,7 @@ import java.util.*;
 
 import dev.shrp.recommendation.dto.MatchDTO;
 import dev.shrp.recommendation.dto.MatchPariDTO;
+import dev.shrp.recommendation.dto.PariDTO;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.IRStatistics;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
@@ -29,7 +30,8 @@ import org.apache.mahout.common.RandomUtils;
 public class UserBasedRecommender {
 
     private List<MatchDTO> matchs;
-    private List<MatchPariDTO> paris;
+    private List<MatchPariDTO> parisMatch;
+    private List<PariDTO> paris;
 
 
     public void initDTO(){
@@ -60,186 +62,18 @@ public class UserBasedRecommender {
         }
 
         // Création des paris (au moins 3 paris par parieur, aucun doublon sur un match)
+        parisMatch = new ArrayList<>();
         paris = new ArrayList<>();
 
-        paris.add(new MatchPariDTO(1L, 1L));
-        paris.add(new MatchPariDTO(2L, 1L));
-        paris.add(new MatchPariDTO(3L, 1L));
 
-        paris.add(new MatchPariDTO(4L, 2L));
-        paris.add(new MatchPariDTO(5L, 2L));
-        paris.add(new MatchPariDTO(6L, 2L));
-
-        paris.add(new MatchPariDTO(7L, 3L));
-        paris.add(new MatchPariDTO(8L, 3L));
-        paris.add(new MatchPariDTO(9L, 3L));
-
-        paris.add(new MatchPariDTO(10L, 4L));
-        paris.add(new MatchPariDTO(1L, 4L));
-        paris.add(new MatchPariDTO(2L, 4L));
-
-        paris.add(new MatchPariDTO(3L, 5L));
-        paris.add(new MatchPariDTO(4L, 5L));
-        paris.add(new MatchPariDTO(5L, 5L));
-
-        paris.add(new MatchPariDTO(6L, 6L));
-        paris.add(new MatchPariDTO(7L, 6L));
-        paris.add(new MatchPariDTO(8L, 6L));
-
-        paris.add(new MatchPariDTO(9L, 7L));
-        paris.add(new MatchPariDTO(10L, 7L));
-        paris.add(new MatchPariDTO(1L, 7L));
-
-        paris.add(new MatchPariDTO(2L, 8L));
-        paris.add(new MatchPariDTO(3L, 8L));
-        paris.add(new MatchPariDTO(4L, 8L));
-
-        paris.add(new MatchPariDTO(5L, 9L));
-        paris.add(new MatchPariDTO(6L, 9L));
-        paris.add(new MatchPariDTO(7L, 9L));
-
-        paris.add(new MatchPariDTO(8L, 10L));
-        paris.add(new MatchPariDTO(9L, 10L));
-        paris.add(new MatchPariDTO(10L, 10L));
-
-        paris.add(new MatchPariDTO(1L, 11L));
-        paris.add(new MatchPariDTO(2L, 11L));
-        paris.add(new MatchPariDTO(3L, 11L));
-
-        paris.add(new MatchPariDTO(4L, 12L));
-        paris.add(new MatchPariDTO(5L, 12L));
-        paris.add(new MatchPariDTO(6L, 12L));
-
-        paris.add(new MatchPariDTO(7L, 13L));
-        paris.add(new MatchPariDTO(8L, 13L));
-        paris.add(new MatchPariDTO(9L, 13L));
-
-        paris.add(new MatchPariDTO(10L, 14L));
-        paris.add(new MatchPariDTO(1L, 14L));
-        paris.add(new MatchPariDTO(2L, 14L));
-
-        paris.add(new MatchPariDTO(3L, 15L));
-        paris.add(new MatchPariDTO(4L, 15L));
-        paris.add(new MatchPariDTO(5L, 15L));
-
-        paris.add(new MatchPariDTO(6L, 16L));
-        paris.add(new MatchPariDTO(7L, 16L));
-        paris.add(new MatchPariDTO(8L, 16L));
-
-        paris.add(new MatchPariDTO(9L, 17L));
-        paris.add(new MatchPariDTO(10L, 17L));
-        paris.add(new MatchPariDTO(1L, 17L));
-
-        paris.add(new MatchPariDTO(2L, 18L));
-        paris.add(new MatchPariDTO(3L, 18L));
-        paris.add(new MatchPariDTO(4L, 18L));
-
-        paris.add(new MatchPariDTO(5L, 19L));
-        paris.add(new MatchPariDTO(6L, 19L));
-        paris.add(new MatchPariDTO(7L, 19L));
-
-        paris.add(new MatchPariDTO(8L, 20L));
-        paris.add(new MatchPariDTO(9L, 20L));
-        paris.add(new MatchPariDTO(10L, 20L));
     }
 
     public void createMatrice(List<MatchDTO> listMatch, List<MatchPariDTO> listMatchPari){
-        /*
-        try (FileWriter writer = new FileWriter("documents/matrice_user_item.csv")) {
-            // Extraire les IDs des matchs
-            List<Long> matchIds = new ArrayList<>();
-            for (MatchDTO match : listMatch) {
-                matchIds.add(match.getId_match());
-            }
 
-            // Organiser les paris par parieur
-            Map<Long, List<Long>> parieurToMatch = new HashMap<>();
-            for (MatchPariDTO pari : listMatchPari) {
-                parieurToMatch.computeIfAbsent(pari.getId_parieur(), k -> new ArrayList<>()).add(pari.getId_match());
-            }
+        // Créer une matrice
+        // id_parieur, id_match, somme_parié
 
-            // Remplir les lignes pour chaque parieur
-            for (Map.Entry<Long, List<Long>> entry : parieurToMatch.entrySet()) {
-                Long parieurId = entry.getKey();
-                List<Long> matchesParies = entry.getValue();
 
-                // La ligne commence avec l'identifiant du parieur
-                StringBuilder line = new StringBuilder();
-                line.append(parieurId);
-                for (Long matchId : matchIds) {
-                    // 1 si le parieur a parié sur le match, 0 sinon
-                    line.append(",").append(matchesParies.contains(matchId) ? 1 : 0);
-                }
-                writer.write(line.toString());
-                writer.write("\n");
-            }
-
-            System.out.println("Matrice CSV générée avec succès.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
-
-        /*
-        try (FileWriter writer = new FileWriter("documents/matrice_user_item.csv")) {
-            System.out.println("Début csv");
-            // Organiser les paris par parieur
-            for (MatchPariDTO pari : listMatchPari) {
-                Long parieurId = pari.getId_parieur();
-                Long matchId = pari.getId_match();
-
-                // Écriture dans le fichier sous forme "id_parieur, id_match, pari"
-                writer.write(parieurId + "," + matchId + ",1\n");
-            }
-
-            System.out.println("Matrice CSV générée avec succès.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-         */
-
-        try (FileWriter writer = new FileWriter("documents/matrice_user_item.csv")) {
-
-            // Récupérer l'ensemble des IDs de parieurs
-            Set<Long> parieurIds = new HashSet<>();
-            for (MatchPariDTO pari : listMatchPari) {
-                parieurIds.add(pari.getId_parieur());
-            }
-
-            // Écrire l'en-tête du CSV avec tous les matchs
-            /*
-            writer.write("id_parieur");
-            for (MatchDTO match : listMatch) {
-                writer.write("," + match.getId_match());
-            }
-            writer.write("\n");
-
-             */
-
-            // Écrire les lignes pour chaque parieur
-            for (Long parieurId : parieurIds) {
-                writer.write(parieurId.toString());
-
-                // Pour chaque match, vérifier si le parieur a parié
-                for (MatchDTO match : listMatch) {
-                    boolean pariPlace = false;
-                    for (MatchPariDTO pari : listMatchPari) {
-                        if (pari.getId_parieur().equals(parieurId) && pari.getId_match().equals(match.getId_match())) {
-                            pariPlace = true;
-                            break;
-                        }
-                    }
-                    // Si parié, mettre 1, sinon mettre 0
-                    writer.write("," + (pariPlace ? 1 : 0));
-                }
-                writer.write("\n");
-            }
-
-            System.out.println("Matrice CSV générée avec succès.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
