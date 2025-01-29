@@ -3,12 +3,14 @@ package dev.shrp.recommendation.dto;
 public class RecommendationDTO {
     private Long idParieur;
     private Long idMatch;
+    private float montant;
     private double pourcentageJustesse;
 
     // Constructeur
-    public RecommendationDTO(Long idParieur, Long idMatch, double pourcentageJustesse) {
+    public RecommendationDTO(Long idParieur, Long idMatch, float montant, double pourcentageJustesse) {
         this.idParieur = idParieur;
         this.idMatch = idMatch;
+        this.montant = montant;
         this.pourcentageJustesse = pourcentageJustesse;
     }
 
@@ -37,12 +39,11 @@ public class RecommendationDTO {
         this.pourcentageJustesse = pourcentageJustesse;
     }
 
-    @Override
-    public String toString() {
-        return "RecommendationDTO{" +
-                "idParieur=" + idParieur +
-                ", idMatch=" + idMatch +
-                ", pourcentageJustesse=" + pourcentageJustesse +
-                '}';
+    public float getMontant() {
+        return montant;
+    }
+
+    public void setMontant(float montant) {
+        this.montant = montant;
     }
 }
