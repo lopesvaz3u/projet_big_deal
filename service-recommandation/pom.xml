@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.shrp</groupId>
-	<artifactId>gestion-api</artifactId>
+	<artifactId>gestion-recommendation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tasks</name>
-	<description>Service Gestion API</description>
+	<name>recommendation</name>
+	<description>Service Gestion recommendation</description>
 	<url/>
 	<licenses>
 		<license/>
