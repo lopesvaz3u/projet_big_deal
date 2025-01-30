@@ -1,6 +1,7 @@
 package dev.shrp.recommendation.services;
 
 import dev.shrp.recommendation.dto.PariDTO;
+import org.apache.mahout.cf.taste.common.Refreshable;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
 import org.apache.mahout.cf.taste.eval.RecommenderEvaluator;
@@ -8,6 +9,7 @@ import org.apache.mahout.cf.taste.impl.eval.RMSRecommenderEvaluator;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+import org.apache.mahout.cf.taste.impl.similarity.EuclideanDistanceSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
@@ -34,6 +36,7 @@ public class RecommandationService {
         DataModel model = new FileDataModel(new File("documents/matrice_user_item.csv"));
 
         RecommenderBuilder recommenderBuilder = model1 -> {
+            //UserSimilarity similarity = new EuclideanDistanceSimilarity(model1);
             UserSimilarity similarity = new PearsonCorrelationSimilarity(model1);
             UserNeighborhood neighborhood = new NearestNUserNeighborhood(5, similarity, model1);
             return new GenericUserBasedRecommender(model1, neighborhood, similarity);
