@@ -12,11 +12,8 @@ import dev.shrp.recommendation.dto.MatchDTO;
 import dev.shrp.recommendation.dto.MatchPariDTO;
 import dev.shrp.recommendation.dto.PariDTO;
 import org.apache.mahout.cf.taste.common.TasteException;
-import org.apache.mahout.cf.taste.eval.IRStatistics;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
 import org.apache.mahout.cf.taste.eval.RecommenderEvaluator;
-import org.apache.mahout.cf.taste.eval.RecommenderIRStatsEvaluator;
-import org.apache.mahout.cf.taste.impl.eval.GenericRecommenderIRStatsEvaluator;
 import org.apache.mahout.cf.taste.impl.eval.RMSRecommenderEvaluator;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
@@ -265,55 +262,6 @@ public class UserBasedRecommender {
     }
 
     public static void main(String[] args) throws Exception {
-
-        UserBasedRecommender UBR = new UserBasedRecommender();
-        UBR.initDTO();
-        UBR.createMatrice(UBR.getMatchs(), UBR.getMatchParis(), UBR.getPari());
-
-        RandomUtils.useTestSeed(); // to randomize the evaluation result
-        DataModel model = new FileDataModel(new File("documents/matrice_user_item.csv"));
-
-        RecommenderBuilder recommenderBuilder = new RecommenderBuilder() {
-            public Recommender buildRecommender(DataModel model) throws TasteException {
-
-                UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
-                //SpearmanCorrelationSimilarity similarity = new SpearmanCorrelationSimilarity(model);
-
-                // neighborhood size = 20
-                UserNeighborhood neighborhood = new NearestNUserNeighborhood (5, similarity, model);
-                return new GenericUserBasedRecommender(model, neighborhood, similarity);
-            }
-        };
-
-        // Recommend certain number of items for a particular user
-
-        long userId = 1L; // l'ID du parieur que tu veux cibler
-        int numRecommendations = 3; // Nombre de recommandations souhaité
-
-        Recommender recommender = recommenderBuilder.buildRecommender(model);
-        List<RecommendedItem> recomendations = recommender.recommend(userId, numRecommendations);
-
-        Set<Long> matchsPrevus = UBR.getMatchs().stream()
-                .filter(match -> "Prévu".equals(match.getEtat()))
-                .map(MatchDTO::getId_match)
-                .collect(Collectors.toSet());
-
-        for (RecommendedItem recommendedItem : recomendations) {
-            //if(matchsPrevus.contains(recommendedItem.getItemID())){
-                System.out.println(recommendedItem);
-            //}
-        }
-
-        RecommenderEvaluator evaluator = new RMSRecommenderEvaluator();
-        double score = evaluator.evaluate(recommenderBuilder, null, model, 0.7, 1.0);
-        System.out.println("RMSE: " + score);
-
-        // Exemple pour obtenir le montant max
-        Optional<Float> maxMontant = UBR.getPari().stream()
-                .map(PariDTO::getMontant) // On récupère les montants
-                .max(Float::compareTo);  // On cherche le maximum
-
-        maxMontant.ifPresent(max -> System.out.println("Soit " + (100 - ((score / max) * 100)) + "% de précision de la recommendation"));
 
     }
 }

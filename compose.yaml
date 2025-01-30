@@ -59,6 +59,26 @@ services:
     networks:
       - shrp
 
+  service-recommandation:
+    build: ./service-recommandation
+    env_file:
+      - ./service-recommandation/.env
+    depends_on:
+      tasks-db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ./service-recommandation
+          target: /app
+    ports:
+      - 7083:8080
+    networks:
+      - shrp
+    volumes:
+      - ./service-recommandation/documents:/app/documents
+
+
   service-pari:
     build: ./service-pari
     env_file:
