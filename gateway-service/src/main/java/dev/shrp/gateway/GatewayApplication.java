@@ -150,8 +150,6 @@ class UriConfiguration {
 
     private String matchService = "http://match-service:7081"; // URL du service des matchs
 
-    private String recommandationService = "http://match-service:7082"; // URL du service des matchs
-
     public String getMatchService() {
         return matchService;
     }

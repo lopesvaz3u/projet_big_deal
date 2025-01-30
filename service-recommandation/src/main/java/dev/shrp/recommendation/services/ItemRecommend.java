@@ -18,7 +18,6 @@ public class ItemRecommend {
     /**
      * @param args
      */
-    /*
     public static void main(String[] args) {
         try {
             DataModel dm = new FileDataModel(new File("dataset-recsys.csv"));
@@ -52,7 +51,5 @@ public class ItemRecommend {
         }
 
     }
-
-     */
 
 }
