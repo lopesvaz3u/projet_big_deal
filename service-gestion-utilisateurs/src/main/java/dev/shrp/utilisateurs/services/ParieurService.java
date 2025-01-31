@@ -58,4 +58,19 @@ public class ParieurService {
         return parieurRepository.save(parieurToUpdate);
     }
 
+    public Parieur baisserCagnote(Long id, double val){
+        Parieur parieurToUpdate = parieurRepository.findById(id).orElseThrow();
+        if(parieurToUpdate.getCagnotte() < val){
+            throw new IllegalArgumentException("Fonds insuffisants : cagnotte actuelle = " + parieurToUpdate.getCagnotte());
+        }
+        parieurToUpdate.setCagnotte(parieurToUpdate.getCagnotte() - val);
+        return parieurRepository.save(parieurToUpdate);
+    }
+
+    public Parieur augmenterCagnote(Long id, double val){
+        Parieur parieurToUpdate = parieurRepository.findById(id).orElseThrow();
+        parieurToUpdate.setCagnotte(parieurToUpdate.getCagnotte() + val);
+        return parieurRepository.save(parieurToUpdate);
+    }
+
 }
