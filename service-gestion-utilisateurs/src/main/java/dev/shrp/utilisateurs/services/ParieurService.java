@@ -60,6 +60,9 @@ public class ParieurService {
 
     public Parieur baisserCagnote(Long id, double val){
         Parieur parieurToUpdate = parieurRepository.findById(id).orElseThrow();
+        if(parieurToUpdate.getCagnotte() < val){
+            throw new IllegalArgumentException("Fonds insuffisants : cagnotte actuelle = " + parieurToUpdate.getCagnotte());
+        }
         parieurToUpdate.setCagnotte(parieurToUpdate.getCagnotte() - val);
         return parieurRepository.save(parieurToUpdate);
     }
