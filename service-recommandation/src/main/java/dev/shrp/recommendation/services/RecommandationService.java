@@ -1,6 +1,7 @@
 package dev.shrp.recommendation.services;
 
 import dev.shrp.recommendation.dto.PariDTO;
+import dev.shrp.recommendation.entities.RecommendationResult;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
 import org.apache.mahout.cf.taste.eval.RecommenderEvaluator;

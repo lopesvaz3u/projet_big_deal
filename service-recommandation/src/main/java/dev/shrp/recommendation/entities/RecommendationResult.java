@@ -1,4 +1,4 @@
-package dev.shrp.recommendation.services;
+package dev.shrp.recommendation.entities;
 
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 

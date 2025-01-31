@@ -1,7 +1,7 @@
 package dev.shrp.recommendation.controller;
 
 import dev.shrp.recommendation.services.RecommandationService;
-import dev.shrp.recommendation.services.RecommendationResult;
+import dev.shrp.recommendation.entities.RecommendationResult;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
