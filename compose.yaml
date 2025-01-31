@@ -1,5 +1,4 @@
 services:
-  # Service de base de données
   tasks-db:
     image: postgres:15
     user: postgres
@@ -16,6 +15,8 @@ services:
       retries: 5
     networks:
       - big_deal
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   service-gestion-utilisateurs:
     build: ./service-gestion-utilisateurs
@@ -120,6 +121,7 @@ services:
     networks:
       - big_deal
 
+
 secrets:
   tasks-db-password:
     file: secrets/tasks-db-password
@@ -129,3 +131,6 @@ secrets:
 networks:
   big_deal:
     driver: bridge
+
+volumes:
+  postgres_data:
