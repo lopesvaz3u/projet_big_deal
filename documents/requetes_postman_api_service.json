@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "0ca8118d-ca95-4ee9-8e35-040917a2cbd1",
+		"name": "service-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18285382"
+	},
+	"item": [
+		{
+			"name": "sync competition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7081/competition/sync",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7081",
+					"path": [
+						"competition",
+						"sync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sync equipe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7081/equipe/sync",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7081",
+					"path": [
+						"equipe",
+						"sync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sync match",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7081/match/sync",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7081",
+					"path": [
+						"match",
+						"sync"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "0eb36c94-550a-4461-a8c8-f07d0eb01cff",
+		"name": "Recommandation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18285382"
+	},
+	"item": [
+		{
+			"name": "getRecommandation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7083/recommandation/onUserSim/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7083",
+					"path": [
+						"recommandation",
+						"onUserSim",
+						"8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7083/recommandation/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7083",
+							"path": [
+								"recommandation",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 Jan 2025 20:45:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"itemID\": 7,\n            \"value\": 26.263157\n        },\n        {\n            \"itemID\": 8,\n            \"value\": 24.07105\n        },\n        {\n            \"itemID\": 3,\n            \"value\": 22.600203\n        }\n    ],\n    \"rmseScore\": 3.517669689329298,\n    \"precisionPercentage\": 91.20582577667676\n}"
+				}
+			]
+		},
+		{
+			"name": "getRecommandation pearson + avg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=PEARSON&evaluator=AVERAGE_ABSOLUTE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7083",
+					"path": [
+						"recommandation",
+						"onUserSim",
+						"1"
+					],
+					"query": [
+						{
+							"key": "algorithm",
+							"value": "PEARSON"
+						},
+						{
+							"key": "evaluator",
+							"value": "AVERAGE_ABSOLUTE"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7083/recommandation/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7083",
+							"path": [
+								"recommandation",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 Jan 2025 20:45:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"itemID\": 7,\n            \"value\": 26.263157\n        },\n        {\n            \"itemID\": 8,\n            \"value\": 24.07105\n        },\n        {\n            \"itemID\": 3,\n            \"value\": 22.600203\n        }\n    ],\n    \"rmseScore\": 3.517669689329298,\n    \"precisionPercentage\": 91.20582577667676\n}"
+				}
+			]
+		},
+		{
+			"name": "getRecommandation pearson + rms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=PEARSON&evaluator=RMS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7083",
+					"path": [
+						"recommandation",
+						"onUserSim",
+						"1"
+					],
+					"query": [
+						{
+							"key": "algorithm",
+							"value": "PEARSON"
+						},
+						{
+							"key": "evaluator",
+							"value": "RMS"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7083/recommandation/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7083",
+							"path": [
+								"recommandation",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 Jan 2025 20:45:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"itemID\": 7,\n            \"value\": 26.263157\n        },\n        {\n            \"itemID\": 8,\n            \"value\": 24.07105\n        },\n        {\n            \"itemID\": 3,\n            \"value\": 22.600203\n        }\n    ],\n    \"rmseScore\": 3.517669689329298,\n    \"precisionPercentage\": 91.20582577667676\n}"
+				}
+			]
+		},
+		{
+			"name": "getRecommandation eucli +avg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=EUCLIDEAN&evaluator=AVERAGE_ABSOLUTE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7083",
+					"path": [
+						"recommandation",
+						"onUserSim",
+						"1"
+					],
+					"query": [
+						{
+							"key": "algorithm",
+							"value": "EUCLIDEAN"
+						},
+						{
+							"key": "evaluator",
+							"value": "AVERAGE_ABSOLUTE"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7083/recommandation/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7083",
+							"path": [
+								"recommandation",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 Jan 2025 20:45:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"itemID\": 7,\n            \"value\": 26.263157\n        },\n        {\n            \"itemID\": 8,\n            \"value\": 24.07105\n        },\n        {\n            \"itemID\": 3,\n            \"value\": 22.600203\n        }\n    ],\n    \"rmseScore\": 3.517669689329298,\n    \"precisionPercentage\": 91.20582577667676\n}"
+				}
+			]
+		},
+		{
+			"name": "getRecommandation eucli +rms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=EUCLIDEAN&evaluator=RMS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7083",
+					"path": [
+						"recommandation",
+						"onUserSim",
+						"1"
+					],
+					"query": [
+						{
+							"key": "algorithm",
+							"value": "EUCLIDEAN"
+						},
+						{
+							"key": "evaluator",
+							"value": "RMS"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7083/recommandation/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7083",
+							"path": [
+								"recommandation",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 Jan 2025 20:45:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"itemID\": 7,\n            \"value\": 26.263157\n        },\n        {\n            \"itemID\": 8,\n            \"value\": 24.07105\n        },\n        {\n            \"itemID\": 3,\n            \"value\": 22.600203\n        }\n    ],\n    \"rmseScore\": 3.517669689329298,\n    \"precisionPercentage\": 91.20582577667676\n}"
+				}
+			]
+		}
+	]
+}

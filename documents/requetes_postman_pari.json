@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "80eed646-f673-4f64-a63b-9d4bae943583",
+		"name": "Pari",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18285382"
+	},
+	"item": [
+		{
+			"name": "getAllParis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6080/pari",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6080",
+					"path": [
+						"pari"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOnePari",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6080/pari/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6080",
+					"path": [
+						"pari",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getParisOfParieur",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6080/pari/parieur/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6080",
+					"path": [
+						"pari",
+						"parieur",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
