@@ -7,7 +7,6 @@ import dev.shrp.match.entities.Equipe;
 import dev.shrp.match.entities.Match;
 import dev.shrp.match.repositories.EquipeRepository;
 import dev.shrp.match.repositories.MatchRepository;
-import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

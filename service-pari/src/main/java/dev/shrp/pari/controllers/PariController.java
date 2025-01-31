@@ -3,6 +3,7 @@ package dev.shrp.pari.controllers;
 import dev.shrp.pari.entities.Pari;
 import dev.shrp.pari.services.PariService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,5 +31,13 @@ public class PariController {
         return pariService.getAllPariOfParieur(idParieur);
     }
 
+    @PostMapping("/simple")
+    public ResponseEntity<Pari> createPariSimple(@RequestParam("matchId") Long matchId,
+                                                 @RequestParam("parieurId") Long parieurId,
+                                                 @RequestParam("resultat") String resultat,
+                                                 @RequestParam("mise") Double mise) {
+        Pari pari = pariService.createPariSimple(matchId, parieurId, resultat, mise);
+        return ResponseEntity.ok(pari);
+    }
 
 }

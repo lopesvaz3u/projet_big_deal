@@ -31,16 +31,16 @@ public class Match {
     @Column(name = "etat")
     private EEtatMatch etat;
 
-    @Column(name = "id_equipe_1")
+    @Column(name = "id_equipe_domicile")
     private Long equipe_1;
 
-    @Column(name = "id_equipe_2")
+    @Column(name = "id_equipe_exterieur")
     private Long equipe_2;
 
-    @Column(name = "score_equipe_1",  columnDefinition = "INTEGER DEFAULT 0")
+    @Column(name = "score_equipe_domicile",  columnDefinition = "INTEGER DEFAULT 0")
     private Integer score_equipe_1;
 
-    @Column(name = "score_equipe_2", columnDefinition = "INTEGER DEFAULT 0")
+    @Column(name = "score_equipe_exterieur", columnDefinition = "INTEGER DEFAULT 0")
     private Integer score_equipe_2;
 
     @Column(name = "id_competition")

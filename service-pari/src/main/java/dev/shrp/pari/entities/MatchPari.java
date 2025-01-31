@@ -16,6 +16,10 @@ public class MatchPari {
     @Column(name = "id_pari", nullable = false)
     private Long idPari; // ID du pari
 
+    // Résultat du pari (victoire domicile, victoire exterieur, egalite)
+    @Column(name = "resultat_pari")
+    private String resultatParie;
+
     public Long getId() {
         return id;
     }
@@ -38,5 +42,13 @@ public class MatchPari {
 
     public void setIdPari(Long idPari) {
         this.idPari = idPari;
+    }
+
+    public String getResultatParie() {
+        return resultatParie;
+    }
+
+    public void setResultatParie(String resultatParie) {
+        this.resultatParie = resultatParie;
     }
 }

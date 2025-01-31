@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PariMatchRepository extends JpaRepository<MatchPari, Long> {
+public interface MatchPariRepository extends JpaRepository<MatchPari, Long> {
     List<MatchPari> findByIdMatch(Long idMatch);
     List<MatchPari> findByIdPari(Long idPari);
 }

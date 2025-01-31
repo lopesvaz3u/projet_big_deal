@@ -2,28 +2,24 @@ package dev.shrp.pari.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 
 @Entity
 @Table(name = "pari")
 public class Pari {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_pari")
     private Long idPari;
 
-    @Column(name = "somme")
-    private String somme;
+    @Column(name = "mise")
+    private double mise;
 
     @Column(name = "combine")
     private boolean combine;
 
     @Column(name = "id_parieur")
-    private int idParieur;
-
-    @Transient // Pas stocké en BDD, utilisé pour exposer la relation
-    private List<Long> idMatchs;
+    private Long idParieur;
 
     public Long getId_pari() {
         return idPari;
@@ -33,12 +29,12 @@ public class Pari {
         this.idPari = id_pari;
     }
 
-    public String getSomme() {
-        return somme;
+    public Double getMise() {
+        return mise;
     }
 
-    public void setSomme(String somme) {
-        this.somme = somme;
+    public void setMise(Double mise) {
+        this.mise = mise;
     }
 
     public boolean isCombine() {
@@ -49,19 +45,11 @@ public class Pari {
         this.combine = combine;
     }
 
-    public int getId_parieur() {
+    public Long getId_parieur() {
         return idParieur;
     }
 
-    public void setId_parieur(int id_parieur) {
+    public void setId_parieur(long id_parieur) {
         this.idParieur = id_parieur;
-    }
-
-    public List<Long> getIdMatchs() {
-        return idMatchs;
-    }
-
-    public void setIdMatchs(List<Long> idMatchs) {
-        this.idMatchs = idMatchs;
     }
 }
