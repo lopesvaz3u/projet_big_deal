@@ -13,7 +13,7 @@ public class Parieur {
     private String rib;
 
     @Column(nullable = false)
-    private double argent = 5;
+    private double cagnotte = 5;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "compte_id", nullable = false)
@@ -35,12 +35,12 @@ public class Parieur {
         this.id_parieur = id_parieur;
     }
 
-    public double getArgent() {
-        return argent;
+    public double getCagnotte() {
+        return cagnotte;
     }
 
-    public void setArgent(double argent) {
-        this.argent = argent;
+    public void setCagnotte(double argent) {
+        this.cagnotte = argent;
     }
 
     public Compte getCompte() {
