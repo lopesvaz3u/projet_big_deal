@@ -10,15 +10,21 @@ public class Match {
     @Column(name = "id_match")
     private Long id_match;
 
-    @Column(name = "cote")
-    private Float cote;
+    @Column(name = "cote_equipe_domicile")
+    private Float cote_equipe_domicile = 2.0f;
+
+    @Column(name = "cote_equipe_exterieur")
+    private Float cote_equipe_exterieur = 3.0f;
+
+    @Column(name = "cote_nul")
+    private Float cote_nul = 4.0f;
 
     @Column(name = "depart_prevu")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date depart_prevu;
 
     @Column(name = "depart_reel")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date depart_reel;
 
     @Enumerated(EnumType.STRING)
@@ -47,12 +53,36 @@ public class Match {
         Annulé
     }
 
-    public Float getCote() {
-        return cote;
+    public Float getCote_equipe_domicile() {
+        return cote_equipe_domicile;
     }
 
-    public void setCote(Float cote) {
-        this.cote = cote;
+    public void setCote_equipe_domicile(Float cote_equipe_domicile) {
+        this.cote_equipe_domicile = cote_equipe_domicile;
+    }
+
+    public Float getCote_equipe_exterieur() {
+        return cote_equipe_exterieur;
+    }
+
+    public void setCote_equipe_exterieur(Float cote_equipe_exterieur) {
+        this.cote_equipe_exterieur = cote_equipe_exterieur;
+    }
+
+    public Float getCote_nul() {
+        return cote_nul;
+    }
+
+    public void setCote_nul(Float cote_nul) {
+        this.cote_nul = cote_nul;
+    }
+
+    public Long getCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(Long competition) {
+        this.competition = competition;
     }
 
     public Integer getScore_equipe_1() {
