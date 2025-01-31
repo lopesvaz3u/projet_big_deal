@@ -125,6 +125,17 @@ public class GatewayApplication {
                 .build();
     }
 
+    // Route pour retirer de l'argent de la cagnotte d'un parieur
+    @Bean
+    public RouteLocator retraitCagnotte(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
+        String utilisateurServiceURI = uriConfiguration.getUtilisateurService();
+        return builder.routes()
+                .route(p -> p
+                        .path("/parieur/retraitCagnote/{id}")
+                        .uri(utilisateurServiceURI))
+                .build();
+    }
+
     // tag::fallback[]
     @RequestMapping("/fallback")
     public Mono<String> fallback() {
@@ -156,6 +167,17 @@ class UriConfiguration {
 
     public void setMatchService(String matchService) {
         this.matchService = matchService;
+    }
+
+
+    private String utilisateurService = "http://service-gestion-utilisateurs:7080"; // URL du service des utilisateurs
+
+    public String getUtilisateurService() {
+        return utilisateurService;
+    }
+
+    public void setUtilisateurService(String utilisateurService) {
+        this.utilisateurService = utilisateurService;
     }
 
     /*

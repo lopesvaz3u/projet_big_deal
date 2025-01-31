@@ -35,4 +35,14 @@ public class ParieurController {
     public Parieur updateRibParieur(@PathVariable("id") Long id, @RequestParam String rib) {
         return parieurService.updateRib(id, rib);
     }
+
+    @PostMapping("/ajoutCagnote/{id}")
+    public Parieur ajoutCagnoteParieur(@PathVariable("id") Long id, @RequestParam double valeur) {
+        return parieurService.augmenterCagnote(id, valeur);
+    }
+
+    @PostMapping("/retraitCagnote/{id}")
+    public Parieur retraitCagnoteParieur(@PathVariable("id") Long id, @RequestParam double valeur) {
+        return parieurService.baisserCagnote(id, valeur);
+    }
 }
