@@ -22,7 +22,7 @@ public class EquipeController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Equipe> getOneUser(@PathVariable("id") Long id) {
+    public Optional<Equipe> getOneEquip(@PathVariable("id") Long id) {
         return equipeService.getOneEquipeById(id);
     }
 

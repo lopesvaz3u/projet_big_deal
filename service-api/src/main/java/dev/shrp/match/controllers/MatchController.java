@@ -22,7 +22,7 @@ public class MatchController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Match> getOneUser(@PathVariable("id") Long id) {
+    public Optional<Match> getOneMatch(@PathVariable("id") Long id) {
         return matchService.getOneMatchById(id);
     }
 
