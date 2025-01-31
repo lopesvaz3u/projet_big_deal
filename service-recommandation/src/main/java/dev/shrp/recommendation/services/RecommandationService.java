@@ -1,10 +1,10 @@
 package dev.shrp.recommendation.services;
 
 import dev.shrp.recommendation.dto.PariDTO;
-import org.apache.mahout.cf.taste.common.Refreshable;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
 import org.apache.mahout.cf.taste.eval.RecommenderEvaluator;
+import org.apache.mahout.cf.taste.impl.eval.AverageAbsoluteDifferenceRecommenderEvaluator;
 import org.apache.mahout.cf.taste.impl.eval.RMSRecommenderEvaluator;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
@@ -27,35 +27,65 @@ import java.util.Optional;
 @Service
 public class RecommandationService {
 
-    public RecommendationResult recommend(long userId) throws IOException, TasteException {
+    public enum AlgorithmType {
+        PEARSON, EUCLIDEAN
+    }
+
+    public enum EvaluatorType {
+        RMS, AVERAGE_ABSOLUTE
+    }
+
+    public RecommendationResult recommend(long userId, AlgorithmType algorithmType, EvaluatorType evaluatorType) throws IOException, TasteException {
+        // Initialisation des données
         UserBasedRecommender UBR = new UserBasedRecommender();
         UBR.initDTO();
-        //UBR.createMatrice(UBR.getMatchs(), UBR.getMatchParis(), UBR.getPari());
-
         RandomUtils.useTestSeed();
         DataModel model = new FileDataModel(new File("documents/matrice_user_item.csv"));
 
-        RecommenderBuilder recommenderBuilder = model1 -> {
-            //UserSimilarity similarity = new EuclideanDistanceSimilarity(model1);
-            UserSimilarity similarity = new PearsonCorrelationSimilarity(model1);
-            UserNeighborhood neighborhood = new NearestNUserNeighborhood(5, similarity, model1);
-            return new GenericUserBasedRecommender(model1, neighborhood, similarity);
-        };
+        // Sélection de l'algorithme
+        RecommenderBuilder recommenderBuilder = getRecommenderBuilder(algorithmType);
 
-        int numRecommendations = 3;
-
+        // Génération des recommandations
         Recommender recommender = recommenderBuilder.buildRecommender(model);
-        List<RecommendedItem> recommendations = recommender.recommend(userId, numRecommendations);
+        List<RecommendedItem> recommendations = recommender.recommend(userId, 3);
 
-        RecommenderEvaluator evaluator = new RMSRecommenderEvaluator();
+        // Évaluation du modèle
+        RecommenderEvaluator evaluator = getRecommenderEvaluator(evaluatorType);
         double score = evaluator.evaluate(recommenderBuilder, null, model, 0.7, 1.0);
 
+        // Calcul de la précision
         Optional<Float> maxMontant = UBR.getPari().stream()
                 .map(PariDTO::getMontant)
                 .max(Float::compareTo);
-
         Double precisionPercentage = maxMontant.map(max -> 100 - ((score / max) * 100)).orElse(null);
 
         return new RecommendationResult(recommendations, score, precisionPercentage);
+    }
+
+    private RecommenderBuilder getRecommenderBuilder(AlgorithmType algorithmType) {
+        return model -> {
+            switch (algorithmType) {
+                case EUCLIDEAN:
+                    return createUserBasedRecommender(model, new EuclideanDistanceSimilarity(model));
+                case PEARSON:
+                default:
+                    return createUserBasedRecommender(model, new PearsonCorrelationSimilarity(model));
+            }
+        };
+    }
+
+    private Recommender createUserBasedRecommender(DataModel model, UserSimilarity similarity) throws TasteException {
+        UserNeighborhood neighborhood = new NearestNUserNeighborhood(5, similarity, model);
+        return new GenericUserBasedRecommender(model, neighborhood, similarity);
+    }
+
+    private RecommenderEvaluator getRecommenderEvaluator(EvaluatorType evaluatorType) {
+        switch (evaluatorType) {
+            case AVERAGE_ABSOLUTE:
+                return new AverageAbsoluteDifferenceRecommenderEvaluator();
+            case RMS:
+            default:
+                return new RMSRecommenderEvaluator();
+        }
     }
 }

@@ -4,10 +4,7 @@ import dev.shrp.recommendation.services.RecommandationService;
 import dev.shrp.recommendation.services.RecommendationResult;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -19,8 +16,13 @@ public class RecommandationController {
     private RecommandationService recommandationService;
 
 
-    @GetMapping("/{idParieur}")
-    public RecommendationResult getRecomm(@PathVariable long idParieur) throws IOException, TasteException {
-        return recommandationService.recommend(idParieur);
+    @GetMapping("onUserSim/{idParieur}")
+    public RecommendationResult getRecomm(
+            @PathVariable long idParieur,
+            @RequestParam(defaultValue = "PEARSON") RecommandationService.AlgorithmType algorithm,
+            @RequestParam(defaultValue = "RMS") RecommandationService.EvaluatorType evaluator
+    ) throws IOException, TasteException {
+        return recommandationService.recommend(idParieur, algorithm, evaluator);
     }
+
 }

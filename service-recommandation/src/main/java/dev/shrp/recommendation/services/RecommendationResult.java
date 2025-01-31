@@ -6,12 +6,12 @@ import java.util.List;
 
 public class RecommendationResult {
     private List<RecommendedItem> recommendations;
-    private double rmseScore;
+    private double score;
     private Double precisionPercentage;
 
-    public RecommendationResult(List<RecommendedItem> recommendations, double rmseScore, Double precisionPercentage) {
+    public RecommendationResult(List<RecommendedItem> recommendations, double Score, Double precisionPercentage) {
         this.recommendations = recommendations;
-        this.rmseScore = rmseScore;
+        this.score = Score;
         this.precisionPercentage = precisionPercentage;
     }
 
@@ -19,8 +19,8 @@ public class RecommendationResult {
         return recommendations;
     }
 
-    public double getRmseScore() {
-        return rmseScore;
+    public double getScore() {
+        return score;
     }
 
     public Double getPrecisionPercentage() {
