@@ -5,6 +5,7 @@ import dev.shrp.match.repositories.CompetitionRepository;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,10 @@ public class CompetitionService {
     @Autowired
     private CompetitionRepository competitionRepository;
 
-    private static final String API_URL = "http://api.football-data.org/v4/competitions";
-    private static final String API_TOKEN = "272b655199974a19bc0cce85b1010560";
+    @Value("${api.url}")
+    private String API_URL;
+    @Value("${api.token}")
+    private String API_TOKEN;
 
     public List<Competition> getAllCompetitions() {
         return competitionRepository.findAll();
@@ -43,7 +46,7 @@ public class CompetitionService {
     public List<Competition> fetchDataCompetition() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL))
+                .uri(URI.create(API_URL+"/competitions"))
                 .header("X-Auth-Token", API_TOKEN)
                 .build();
         try {

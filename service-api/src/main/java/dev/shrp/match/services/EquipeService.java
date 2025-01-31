@@ -5,6 +5,7 @@ import dev.shrp.match.repositories.EquipeRepository;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,8 +24,10 @@ public class EquipeService {
     @Autowired
     private EquipeRepository equipeRepository;
 
-    private static final String API_URL = "http://api.football-data.org/v4/teams";
-    private static final String API_TOKEN = "272b655199974a19bc0cce85b1010560";
+    @Value("${api.url}")
+    private String API_URL;
+    @Value("${api.token}")
+    private String API_TOKEN;
 
     public List<Equipe> getAllEquipes() {
         return equipeRepository.findAll();
@@ -42,7 +45,7 @@ public class EquipeService {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_URL))
+                    .uri(URI.create(API_URL+"/teams"))
                     .header("X-Auth-Token", API_TOKEN)
                     .build();
 

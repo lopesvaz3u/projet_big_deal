@@ -10,6 +10,7 @@ import dev.shrp.match.repositories.MatchRepository;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,9 +33,10 @@ public class MatchService {
     @Autowired
     private EquipeRepository equipeRepository; // Injection du repository pour Equipe
 
-    // URL de l'API et token
-    private static final String API_URL = "http://api.football-data.org/v4/matches";
-    private static final String API_TOKEN = "272b655199974a19bc0cce85b1010560";
+    @Value("${api.url}")
+    private String API_URL;
+    @Value("${api.token}")
+    private String API_TOKEN;
 
     public List<Match> getAllMatchs() {
         return matchRepository.findAll();
@@ -56,7 +58,7 @@ public class MatchService {
             // Étape 1 : Envoyer une requête à l'API
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_URL))
+                    .uri(URI.create(API_URL+"/matches"))
                     .header("X-Auth-Token", API_TOKEN)
                     .build();
 
