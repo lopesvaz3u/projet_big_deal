@@ -55,7 +55,6 @@ public class MatchService {
 
     public void fetchAndSaveMatches() {
         try {
-            // Étape 1 : Envoyer une requête à l'API
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(API_URL+"/matches"))
