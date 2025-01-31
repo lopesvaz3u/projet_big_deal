@@ -4,7 +4,6 @@ import dev.shrp.pari.entities.MatchPari;
 import dev.shrp.pari.entities.Pari;
 import dev.shrp.pari.repositories.MatchPariRepository;
 import dev.shrp.pari.repositories.PariRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
