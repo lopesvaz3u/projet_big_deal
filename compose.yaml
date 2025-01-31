@@ -1,4 +1,5 @@
 services:
+  # Service de base de données
   tasks-db:
     image: postgres:15
     user: postgres
@@ -14,7 +15,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - shrp
+      - big_deal
 
   service-gestion-utilisateurs:
     build: ./service-gestion-utilisateurs
@@ -28,14 +29,12 @@ services:
         - action: rebuild
           path: ./service-gestion-utilisateurs
           target: /app
-    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
-    ports:
-      - 7080:8080
-    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
-    #expose:
-      #- 8080
+    #ports:
+      #- 7080:8080
+    expose:
+      - 8080
     networks:
-      - shrp
+      - big_deal
 
 
   service-api:
@@ -50,14 +49,12 @@ services:
         - action: rebuild
           path: ./service-api
           target: /app
-    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
-    ports:
-      - 7081:8080
-    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
-    #expose:
-    #  - 8080
+    #ports:
+      #- 7081:8080
+    expose:
+      - 8080
     networks:
-      - shrp
+      - big_deal
 
   service-recommandation:
     build: ./service-recommandation
@@ -71,10 +68,12 @@ services:
         - action: rebuild
           path: ./service-recommandation
           target: /app
-    ports:
-      - 7083:8080
+    #ports:
+      #- 7083:8080
+    expose:
+      - 8080
     networks:
-      - shrp
+      - big_deal
     volumes:
       - ./service-recommandation/documents:/app/documents
 
@@ -91,14 +90,12 @@ services:
         - action: rebuild
           path: ./service-pari
           target: /app
-    #décommenter ports pour exposer le service sur la machine locale (et commenter expose)
-    ports:
-       - 6080:8080
-    #décommenter exposer pour ne pas exposer le service sur la machine locale (et commenter ports)
-    #expose:
-      #- 8080
+    #ports:
+       #- 6080:8080
+    expose:
+      - 8080
     networks:
-      - shrp
+      - big_deal
 
   gateway-service:
     build: ./gateway-service
@@ -112,7 +109,7 @@ services:
     ports:
       - 8888:8080
     networks:
-      - shrp
+      - big_deal
 
   adminer:
     image: adminer
@@ -121,7 +118,7 @@ services:
     ports:
       - 9080:8080
     networks:
-      - shrp
+      - big_deal
 
 secrets:
   tasks-db-password:
@@ -130,5 +127,5 @@ secrets:
     file: secrets/auth-db-password
 
 networks:
-  shrp:
+  big_deal:
     driver: bridge

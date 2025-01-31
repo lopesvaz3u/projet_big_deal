@@ -15,12 +15,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/bookmaker",
+							"raw": "http://localhost:8888/bookmaker",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"bookmaker"
 							]
@@ -34,12 +34,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/bookmaker/1",
+							"raw": "http://localhost:8888/bookmaker/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"bookmaker",
 								"1"
@@ -63,12 +63,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:7080/bookmaker",
+							"raw": "http://localhost:8888/bookmaker",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"bookmaker"
 							]
@@ -96,12 +96,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:7080/parieur?rib=\"123456\"",
+							"raw": "http://localhost:8888/parieur?rib=\"123456\"",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"parieur"
 							],
@@ -121,12 +121,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/parieur",
+							"raw": "http://localhost:8888/parieur",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"parieur"
 							]
@@ -140,12 +140,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/parieur/1",
+							"raw": "http://localhost:8888/parieur/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"parieur",
 								"1"
@@ -169,12 +169,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:7080/parieur/1?rib=\"newRIBupdated\"",
+							"raw": "http://localhost:8888/parieur/1?rib=\"newRIBupdated\"",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"parieur",
 								"1"
@@ -200,12 +200,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/compte",
+							"raw": "http://localhost:8888/compte",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"compte"
 							]
@@ -219,14 +219,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/comptes/1",
+							"raw": "http://localhost:8888/compte/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
-								"comptes",
+								"compte",
 								"1"
 							]
 						}
@@ -248,12 +248,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:7080/compte/1",
+							"raw": "http://localhost:8888/compte/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7080",
+							"port": "8888",
 							"path": [
 								"compte",
 								"1"

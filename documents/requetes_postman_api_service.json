@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7081/competition/sync",
+					"raw": "http://localhost:8888/competition/sync",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7081",
+					"port": "8888",
 					"path": [
 						"competition",
 						"sync"
@@ -32,12 +32,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7081/equipe/sync",
+					"raw": "http://localhost:8888/equipe/sync",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7081",
+					"port": "8888",
 					"path": [
 						"equipe",
 						"sync"
@@ -52,12 +52,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7081/match/sync",
+					"raw": "http://localhost:8888/match/sync",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7081",
+					"port": "8888",
 					"path": [
 						"match",
 						"sync"

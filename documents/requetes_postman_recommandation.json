@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7083/recommandation/onUserSim/8",
+					"raw": "http://localhost:8888/recommandation/onUserSim/8",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7083",
+					"port": "8888",
 					"path": [
 						"recommandation",
 						"onUserSim",
@@ -80,12 +80,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=PEARSON&evaluator=AVERAGE_ABSOLUTE",
+					"raw": "http://localhost:8888/recommandation/onUserSim/1?algorithm=PEARSON&evaluator=AVERAGE_ABSOLUTE",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7083",
+					"port": "8888",
 					"path": [
 						"recommandation",
 						"onUserSim",
@@ -158,12 +158,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=PEARSON&evaluator=RMS",
+					"raw": "http://localhost:8888/recommandation/onUserSim/1?algorithm=PEARSON&evaluator=RMS",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7083",
+					"port": "8888",
 					"path": [
 						"recommandation",
 						"onUserSim",
@@ -236,12 +236,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=EUCLIDEAN&evaluator=AVERAGE_ABSOLUTE",
+					"raw": "http://localhost:8888/recommandation/onUserSim/1?algorithm=EUCLIDEAN&evaluator=AVERAGE_ABSOLUTE",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7083",
+					"port": "8888",
 					"path": [
 						"recommandation",
 						"onUserSim",
@@ -314,12 +314,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7083/recommandation/onUserSim/1?algorithm=EUCLIDEAN&evaluator=RMS",
+					"raw": "http://localhost:8888/recommandation/onUserSim/1?algorithm=EUCLIDEAN&evaluator=RMS",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7083",
+					"port": "8888",
 					"path": [
 						"recommandation",
 						"onUserSim",

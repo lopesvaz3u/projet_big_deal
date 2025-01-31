@@ -1,0 +1,50 @@
+server:
+  port: 8080  # Port interne de la gateway (exposé en 8888 par Docker)
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: pari-service
+          uri: http://service-pari:8080
+          predicates:
+            - Path=/pari/**
+
+        - id: utilisateur-service
+          uri: http://service-gestion-utilisateurs:8080
+          predicates:
+            - Path=/parieur/**
+
+        - id: utilisateur-service
+          uri: http://service-gestion-utilisateurs:8080
+          predicates:
+            - Path=/bookmaker/**
+
+        - id: utilisateur-service
+          uri: http://service-gestion-utilisateurs:8080
+          predicates:
+            - Path=/compte/**
+
+        - id: match-service
+          uri: http://service-api:8080
+          predicates:
+            - Path=/competition/**
+
+        - id: match-service
+          uri: http://service-api:8080
+          predicates:
+            - Path=/equipe/**
+
+        - id: match-service
+          uri: http://service-api:8080
+          predicates:
+            - Path=/match/**
+
+        - id: recommandation-service
+          uri: http://service-recommandation:8080
+          predicates:
+              - Path=/recommandation/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

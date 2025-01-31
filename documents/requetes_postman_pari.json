@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6080/pari",
+					"raw": "http://localhost:8888/pari",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "6080",
+					"port": "8888",
 					"path": [
 						"pari"
 					]
@@ -31,12 +31,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6080/pari/1",
+					"raw": "http://localhost:8888/pari/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "6080",
+					"port": "8888",
 					"path": [
 						"pari",
 						"1"
@@ -51,16 +51,58 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6080/pari/parieur/1",
+					"raw": "http://localhost:8888/pari/parieur/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "6080",
+					"port": "8888",
 					"path": [
 						"pari",
 						"parieur",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new pari simple",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8888/pari/simple?matchId=503853&parieurId=1&resultat=victoire_domicile&mise=5.5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pari",
+						"simple"
+					],
+					"query": [
+						{
+							"key": "matchId",
+							"value": "503853"
+						},
+						{
+							"key": "parieurId",
+							"value": "1"
+						},
+						{
+							"key": "resultat",
+							"value": "victoire_domicile"
+						},
+						{
+							"key": "mise",
+							"value": "5.5"
+						}
 					]
 				}
 			},
